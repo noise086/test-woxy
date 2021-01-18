@@ -1,25 +1,82 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import style from './App.module.css';
+import Content from './Components/Content/content';
+import Header from './Components/header/header';
+import SideBar from './Components/SideBar/sideBar';
+import { API } from './Components/API/api'
+import React, { Component } from 'react'
+
+
+export default class App extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			matches: null,
+			leagues: null,
+			countries: null,
+			today: null,
+			tomorrow: null
+		}
+	}
+
+	getNowDate () {
+		let date = new Date()
+	let year = date.getFullYear()
+	let month = date.getMonth()
+	let day = date.getDate()
+	let today = String(year + '-' + 0+(month+1) + '-' + day)
+	let tomorrow = String(year + '-' + 0+(month+1) + '-' + (day+1))
+	this.setState({today})
+	this.setState({tomorrow})
+
+	} 
+
+	componentDidMount() {
+		API.getMatches().then((response) => {
+			this.setState(state => {
+				return {
+					...state,
+					matches: response
+				}
+			})
+		})
+		let today = this.getNowDate()
+		console.log(today)
+
+
+		API.getLeagues().then((response) => {
+			this.setState(state => {
+				return {
+					...state,
+					leagues: response
+				}
+			})
+		})
+		API.getCountries().then((response) => {
+			this.setState(state => {
+				return {
+					...state,
+					countries: response
+				}
+
+			})
+		})
+	}
+
+	render() {
+		return (
+			<div className={style.container}>
+				<Header />
+				<SideBar />
+				<Content matches={this.state.matches}
+						 today={this.state.today}
+						 tomorrow={this.state.tomorrow}
+						 leagues={this.state.leagues} />
+			</div>
+	
+		);
+	}
+
+	
 }
 
-export default App;
