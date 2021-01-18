@@ -1,0 +1,103 @@
+.contentHeader{
+    height: 48px;
+    display: grid;
+    grid-template-columns: 10fr 2fr;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 0px #ECECEE;
+    border-radius: 3px;
+    padding-left: 16px;
+    margin-right: 18px;
+}
+.contentTabs{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+.tab{
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1E99C7;
+}
+.tabNumber{
+    margin-left: 5px;
+    color: rgba(45, 40, 94, 0.56);
+    mix-blend-mode: normal;
+}
+.calendar{
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1E99C7;
+} 
+.calendarImg{
+    margin-right: 30px;
+}
+
+.contentMatches{
+    margin: 13px 18px 0 0;
+    background: #fff;
+    box-shadow: 0px 1px 0px #ECECEE;
+    border-radius: 5px;
+}
+
+.matchesBlockTitle{
+    border-bottom: 1px solid rgba(53, 57, 66, 0.25);
+    height: 43px;
+    display: flex;
+    align-items: center;
+    padding-left: 18px;
+}
+.title{
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    color: #353942;
+    margin-left: 35px;
+}
+
+.matchesBlockEvent{
+    /* display: flex;
+    justify-content: space-between;
+    align-items: center; */
+    display: grid;
+    grid-template-columns: 1fr 8fr 3fr 3fr;
+    padding: 10px;
+}
+.time{
+    border-right: 1px solid rgba(53, 57, 66, 0.25);
+    padding-right: 10px;
+    line-height: 24px;
+}
+.event{
+    display: flex;
+    justify-content: space-between;
+    border-right: 1px solid rgba(53, 57, 66, 0.25);
+    padding-right: 10px;
+    line-height: 24px;
+}
+.teams{
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1E99C7;
+    margin-left: 10px;
+}
+.stateMatch{
+    font-size: 16px;
+    line-height: 20px;
+    margin-left: 10px;
+    color: rgba(45, 40, 94, 0.56);
+    border-right: 1px solid rgba(53, 57, 66, 0.25);
+}
+.details{
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1E99C7;
+    margin-left: 10px;
+}

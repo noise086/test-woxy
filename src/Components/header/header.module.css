@@ -1,0 +1,41 @@
+.header{
+    grid-area: h;
+    background: #fff;
+    box-shadow: 0px 2px 6px rgba(45, 40, 94, 0.06);
+    display: grid;
+    grid-template-columns: 10fr 2fr;
+}
+
+.linksWrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 60px;
+}
+.headerLink{
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.blue{
+    color: #1E99C7;
+}
+
+.searchWrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 30px;
+}
+
+.loginBtn {
+    border: 1px solid #1E99C7;
+    box-sizing: border-box;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 16px;
+    width: 90px;
+    height: 34px;
+    background: #fff;
+}
+

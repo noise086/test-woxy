@@ -1,0 +1,37 @@
+.sidebar {
+    grid-area: s;
+    width: 208px;
+    margin-left: 13px;
+}
+.sidebarBlock {
+    background: #353942;
+    box-shadow: 0px 2px 6px rgba(45, 40, 94, 0.06);
+    border-radius: 3px;
+    padding: 12px 15px 18px 15px;
+    margin-bottom: 10px;
+} 
+/* .sidebarBlock :last-child {
+    margin-top: 10px;
+} */
+.blockTitle{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 34px;
+    color: white
+}
+.blockItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 34px;
+    color: white
+} 
+.span {
+    font-size: 9px;
+}
+hr {
+    width: 204px;
+    transform: translateX(-14px);
+}
