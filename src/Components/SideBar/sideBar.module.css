@@ -1,6 +1,6 @@
 .sidebar {
     grid-area: s;
-    width: 208px;
+    width: 180px;
     margin-left: 13px;
 }
 .sidebarBlock {
@@ -10,9 +10,10 @@
     padding: 12px 15px 18px 15px;
     margin-bottom: 10px;
 } 
-/* .sidebarBlock :last-child {
-    margin-top: 10px;
-} */
+.sidebarBlock hr {
+    width: 176px;
+    transform: translateX(-14px);
+}
 .blockTitle{
     font-weight: 500;
     font-size: 16px;
@@ -28,10 +29,38 @@
     line-height: 34px;
     color: white
 } 
-.span {
-    font-size: 9px;
+.league {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 20px;
+    color: white;
 }
-hr {
-    width: 204px;
-    transform: translateX(-14px);
+
+.league span {
+    font-size: 22px;
+    cursor: pointer;
+    color: #858585;
+}
+.blockItem span {
+    font-size: 9px;
+    cursor: pointer;
+    padding: 10px;
+    line-height: 9px;
+}
+.leaguesList {
+    display: block;
+}
+
+.displayNone {
+    display: none;
+}
+
+
+@media only screen and (max-width: 525px) {
+.sidebar{
+    display: none;
+}
 }

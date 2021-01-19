@@ -1,3 +1,6 @@
+.loading{
+    margin: 0 auto;
+}
 .contentHeader{
     height: 48px;
     display: grid;
@@ -20,6 +23,7 @@
     font-size: 16px;
     line-height: 24px;
     color: #1E99C7;
+    text-decoration: none;
 }
 .tabNumber{
     margin-left: 5px;
@@ -61,9 +65,6 @@
 }
 
 .matchesBlockEvent{
-    /* display: flex;
-    justify-content: space-between;
-    align-items: center; */
     display: grid;
     grid-template-columns: 1fr 8fr 3fr 3fr;
     padding: 10px;
@@ -87,6 +88,14 @@
     color: #1E99C7;
     margin-left: 10px;
 }
+.score{
+    margin-left: auto;
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 24px;
+    color: #1E99C7;
+}
 .stateMatch{
     font-size: 16px;
     line-height: 20px;
@@ -94,10 +103,78 @@
     color: rgba(45, 40, 94, 0.56);
     border-right: 1px solid rgba(53, 57, 66, 0.25);
 }
-.details{
+.details a{
     font-weight: bold;
     font-size: 16px;
     line-height: 20px;
     color: #1E99C7;
     margin-left: 10px;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+    .tab {
+        font-size: 13px;
+    }
+    .calendar {
+        justify-content: center;
+    }
+    .calendar span {
+        display: none;
+    }
+    .time, .title, .teams, .score, .stateMatch, .details a {
+        font-size: 13px;
+    }
+    .event {
+        border: none;
+        display: grid;
+        grid-template-columns: 7fr 2fr 1fr;
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 525px) {
+    .contentHeader {
+        margin-right: 0;
+    }
+    .tab {
+        font-size: 12px;
+        padding: 8px;
+    }
+    .title {
+        font-size: 13px;
+    }
+    .calendar span {
+        display: none;
+    }
+    .calendarImg {
+        margin: 0 auto  ;
+
+    }
+    .contentMatches {
+        margin-right: 0;
+    }
+    .event {
+        border: none;
+        display: grid;
+        grid-template-columns: 7fr 2fr 1fr;
+        padding: 0;
+    }
+    .teams {
+        font-size: 13px;
+    }
+    .score {
+        text-align: right;
+        font-size: 13px;
+    }
+    .matchesBlockEvent {
+        grid-template-columns: 1fr 5fr;
+        padding-right: 0;
+    }
+    .stateMatch {
+        display: none;
+    }
+    .details {
+        display: none;
+    }
 }

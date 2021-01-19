@@ -1,13 +1,16 @@
 import React from 'react'
+import { BrowserRouter, Route } from 'react-router-dom'
 import style from './content.module.css'
 import ContentHeader from './contentHeader'
-import Leagues from './leagues'
+import MatchesAll from './matchesAll'
+import MatchesToday from './matchesToday'
+import MatchesTomorrow from './matchesTomorrow'
 
 
 
-const Content = ({ matches, today, tomorrow, leagues }) => {
+const Content = ({ matches, today, tomorrow, leagues, getMatches }) => {
     if (!matches || !leagues) {
-        return <div>Загрузка</div>
+        return <h2 className={style.loading}>Загрузка...</h2>
     }
     const matchesToday = matches.filter(m => {
         return today === m.time.slice(0, 10)
@@ -16,59 +19,56 @@ const Content = ({ matches, today, tomorrow, leagues }) => {
         return tomorrow === m.time.slice(0, 10)
     })
 
-    const matchLeaguesFiltered = []
-    const result = []
-    for (let i = 0; i < matches.length; i++) {
-        if (!result.includes(matches[i].league_id)) {
-            result.push(matches[i].league_id)
-            matchLeaguesFiltered.push(matches[i])
+    const setFilterLeagues = (period) => {
+        const leaguesFiltered = []
+        const result = []
+        for (let i = 0; i < period.length; i++) {
+            if (!result.includes(period[i].league_id)) {
+                result.push(period[i].league_id)
+                leaguesFiltered.push(period[i])
+            }
         }
+        return leaguesFiltered
     }
 
-    let allLeagues = []
-    leagues.forEach((element) => {
-        for (let i = 0; i < element.items.length; i++) {
-            allLeagues.push(element.items[i])
-            allLeagues.
-        }
-    })
-    
+    const leaguesFilteredToday = setFilterLeagues(matchesToday)
+    const leaguesFilteredTomorrow = setFilterLeagues(matchesTomorrow)
+    const leaguesFilteredAll = setFilterLeagues(matches)
 
 
     return (
         <div  >
-            <ContentHeader matches={matches}
-                matchesToday={matchesToday}
-                matchesTomorrow={matchesTomorrow} />
-            <div className={style.contentMatches} >
-                <div>
-                    <div className={style.matchesBlock} >
-                        {
-                            matchLeaguesFiltered.map(elem => {
-                                let leagueName;
-                                allLeagues.forEach(l => {
-                                    if (elem.league_id === l.id) {
-                                        leagueName = l.item
-                                    }
-                                })
-                                return <Leagues key={elem.id} leagueName={leagueName} />
-                            })
-                        }
-                        {/* <div className={style.matchesBlockEvent} >
-                            <div className={style.time}>00:00</div>
-                            <div className={style.event} >
-                                <div className={style.teams}>Эвертон — Ливерпуль</div>
-                                <div className={style.score} ></div>
-                                <span className={style.favorite}><img src={notFavorite} alt='favorite' /></span>
-                            </div>
-                            <div className={style.stateMatch} >Перенесен</div>
-                            <div className={style.details} >Подробнее</div>
-                        </div> */}
-                    </div>
+            <BrowserRouter >
+                <ContentHeader matches={matches}
+                    matchesToday={matchesToday}
+                    matchesTomorrow={matchesTomorrow}
+                    getMatches={getMatches} />
 
-                </div>
-            </div>
+                <Route path="/todaymatches" component={() => {
+                           return <MatchesToday
+                            leaguesFiltered={leaguesFilteredToday}
+                            leagues={leagues}
+                            matches={matchesToday} />
+                       }}
+                       >
+                </Route>
 
+                <Route path="/tomorrowmatches" render={() => {
+                    return <MatchesTomorrow
+                        leaguesFiltered={leaguesFilteredTomorrow}
+                        leagues={leagues}
+                        matches={matchesTomorrow} />
+                }} >
+                </Route>
+
+                <Route path="/allmatches" render={() => {
+                    return <MatchesAll
+                        leaguesFiltered={leaguesFilteredAll}
+                        leagues={leagues}
+                        matches={matches} />
+                }} >
+                </Route>
+            </BrowserRouter>
         </div>
     )
 }

@@ -1,10 +1,10 @@
 
+import React, { Component } from 'react';
 import style from './App.module.css';
+import { API } from './Components/API/api';
 import Content from './Components/Content/content';
 import Header from './Components/header/header';
 import SideBar from './Components/SideBar/sideBar';
-import { API } from './Components/API/api'
-import React, { Component } from 'react'
 
 
 export default class App extends Component {
@@ -19,19 +19,19 @@ export default class App extends Component {
 		}
 	}
 
-	getNowDate () {
+	getNowDate() {
 		let date = new Date()
-	let year = date.getFullYear()
-	let month = date.getMonth()
-	let day = date.getDate()
-	let today = String(year + '-' + 0+(month+1) + '-' + day)
-	let tomorrow = String(year + '-' + 0+(month+1) + '-' + (day+1))
-	this.setState({today})
-	this.setState({tomorrow})
+		let year = date.getFullYear()
+		let month = date.getMonth()
+		let day = date.getDate()
+		let today = String(year + '-' + 0 + (month + 1) + '-' + day)
+		let tomorrow = String(year + '-' + 0 + (month + 1) + '-' + (day + 1))
+		this.setState({ today })
+		this.setState({ tomorrow })
 
-	} 
+	}
 
-	componentDidMount() {
+	getMatches = () => {
 		API.getMatches().then((response) => {
 			this.setState(state => {
 				return {
@@ -40,10 +40,9 @@ export default class App extends Component {
 				}
 			})
 		})
-		let today = this.getNowDate()
-		console.log(today)
+	}
 
-
+	getLeagues = () => {
 		API.getLeagues().then((response) => {
 			this.setState(state => {
 				return {
@@ -52,31 +51,49 @@ export default class App extends Component {
 				}
 			})
 		})
+	}
+
+	getCountries = () => {
 		API.getCountries().then((response) => {
 			this.setState(state => {
 				return {
 					...state,
 					countries: response
 				}
-
+	
 			})
 		})
 	}
+	
+
+	componentDidMount() {
+		this.getMatches()
+		this.getLeagues()
+		this.getCountries()
+		this.getNowDate()
+	}
 
 	render() {
+		
 		return (
+			
 			<div className={style.container}>
-				<Header />
-				<SideBar />
-				<Content matches={this.state.matches}
-						 today={this.state.today}
-						 tomorrow={this.state.tomorrow}
-						 leagues={this.state.leagues} />
+					<Header />
+					<SideBar 
+						leagues={this.state.leagues}
+						countries={this.state.countries}
+						getLeagues={this.getLeagues}
+						getCountries={this.getCountries} />
+					<Content matches={this.state.matches}
+						today={this.state.today}
+						tomorrow={this.state.tomorrow}
+						leagues={this.state.leagues}
+						getMatches={this.getMatches} />
 			</div>
-	
+
 		);
 	}
 
-	
+
 }
 
